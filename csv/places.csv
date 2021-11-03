@@ -1,0 +1,301 @@
+place_id,place_name,place_type
+1,"Brown, Kautzer and Kulas",Hospital
+2,"Feest, Kuhn and Rohan",School
+3,Considine-Schumm,Supermarket
+4,Kutch-Ebert,Supermarket
+5,"Raynor, Kerluke and Deckow",Hospital
+6,"Schumm, Kuvalis and Ebert",Hospital
+7,"Lebsack, VonRueden and Osinski",Gym
+8,"Mayert, Hartmann and Batz",Office
+9,Koelpin-Armstrong,Cinema
+10,Moen-Frami,Hospital
+11,Kub Inc,Hospital
+12,Considine Inc,Supermarket
+13,Howell and Sons,Gym
+14,Jacobs and Sons,School
+15,"Smitham, Zulauf and Kertzmann",Hospital
+16,"Lockman, Haag and McCullough",Hospital
+17,Ankunding Group,Office
+18,"Cruickshank, Armstrong and Kozey",Gym
+19,"Swaniawski, Veum and Rippin",Bar
+20,"Steuber, Kris and D'Amore",Theater
+21,Cartwright-Haag,Bar
+22,Rippin-Medhurst,Office
+23,"Smitham, Satterfield and Schowalter",School
+24,"Legros, Bayer and Gislason",Hospital
+25,"Cremin, Reichert and Dicki",Theater
+26,"Heller, Botsford and Beer",Shop
+27,"Feest, Kassulke and Schuppe",Bar
+28,"Barton, Botsford and Bartoletti",Office
+29,"Collier, Howell and Effertz",Shop
+30,"Stokes, Larkin and Connelly",Supermarket
+31,"Hagenes, Veum and Weber",Bar
+32,Huels and Sons,Supermarket
+33,"Romaguera, Schaden and Runte",Hospital
+34,Upton and Sons,Restaurant
+35,Wuckert-Crona,Gym
+36,Kovacek-Kassulke,Restaurant
+37,Wiza-Schultz,Shop
+38,Larkin-Rosenbaum,Restaurant
+39,"Harber, Grimes and O'Keefe",Gym
+40,"Leuschke, Hodkiewicz and Bode",Hospital
+41,Waters Inc,Restaurant
+42,Schuppe and Sons,Gym
+43,"Ernser, Lowe and Nitzsche",Theater
+44,West LLC,Restaurant
+45,Ratke Group,School
+46,O'Kon-Williamson,Restaurant
+47,"Towne, Hettinger and Stiedemann",Theater
+48,"Grady, Torphy and Renner",Restaurant
+49,Effertz Inc,Bar
+50,Frami and Sons,School
+51,Wisozk Inc,Gym
+52,Hackett-Purdy,Shop
+53,Hessel Group,School
+54,Pagac Inc,School
+55,"Nicolas, Lakin and Hettinger",Shop
+56,Kuphal Group,Office
+57,Rath and Sons,School
+58,"Jacobson, Wuckert and O'Keefe",Theater
+59,Ortiz Group,Gym
+60,Schaefer-Osinski,Cinema
+61,"Reinger, Bashirian and Luettgen",Bar
+62,"Zieme, Quigley and Hermann",Shop
+63,Jast-Fadel,Shop
+64,West-Wehner,School
+65,"Strosin, Boyle and Beatty",Hospital
+66,Lowe-Mante,Hospital
+67,"Schroeder, Waelchi and Welch",Cinema
+68,O'Connell Group,Restaurant
+69,Kris-Bode,Supermarket
+70,Toy and Sons,Restaurant
+71,Waters and Sons,Theater
+72,Ritchie-Hodkiewicz,Hospital
+73,"Wilkinson, Rice and West",Shop
+74,"Bernhard, Rogahn and Pfeffer",Shop
+75,"Carroll, Emard and King",Theater
+76,Watsica Inc,Bar
+77,"Bogan, Koelpin and Tillman",Bar
+78,"Dare, Lueilwitz and Ratke",Theater
+79,"Bernier, Hyatt and Spencer",Restaurant
+80,"Heathcote, Prohaska and Hintz",Restaurant
+81,Jacobs Group,Office
+82,Hoeger Group,Office
+83,Toy-Auer,Gym
+84,Mertz Inc,Cinema
+85,Bradtke-Stroman,School
+86,"Ortiz, Greenfelder and Littel",Gym
+87,Weimann-Kirlin,School
+88,"Bogan, Rutherford and Flatley",Bar
+89,Harris-Runte,Shop
+90,Runte-Mraz,Hospital
+91,Jacobson LLC,Cinema
+92,Franecki Inc,Restaurant
+93,"Greenholt, Kihn and Spencer",Cinema
+94,Huels Inc,Office
+95,Morar LLC,Hospital
+96,Wilderman and Sons,Bar
+97,DuBuque Group,Office
+98,Nienow and Sons,Theater
+99,"Dietrich, Lynch and Champlin",Restaurant
+100,"Nitzsche, Greenfelder and Howe",School
+101,Krajcik Group,Restaurant
+102,"Blick, Will and Bogan",Gym
+103,Ernser-Hudson,School
+104,Weber-Jast,Theater
+105,Rolfson-Ledner,Supermarket
+106,Cremin and Sons,Bar
+107,Kunze Group,Cinema
+108,Lueilwitz-Jacobi,Shop
+109,Price-Wunsch,Cinema
+110,Funk-Ebert,Theater
+111,"Bruen, Walsh and Kunde",Shop
+112,"Morissette, Connelly and Rodriguez",Restaurant
+113,Will-Parisian,Supermarket
+114,"Collier, Padberg and O'Hara",Theater
+115,D'Amore-Parker,Cinema
+116,Bradtke-Lebsack,Office
+117,Skiles-Herman,Supermarket
+118,Wolff Inc,Shop
+119,"Dicki, Heidenreich and Hand",Bar
+120,"Veum, Huel and Pfeffer",Restaurant
+121,"Littel, Reynolds and Brown",Gym
+122,Barton Inc,Theater
+123,Howe and Sons,Cinema
+124,Veum-Nader,Restaurant
+125,Parker Inc,Bar
+126,Prosacco-Klocko,Bar
+127,Shanahan Inc,Restaurant
+128,Bauch Group,Bar
+129,"Lueilwitz, Rippin and Schulist",School
+130,"Bradtke, Powlowski and Nikolaus",Cinema
+131,"Botsford, Jacobson and Balistreri",Supermarket
+132,Stiedemann-Kohler,Office
+133,"Terry, Mayert and Doyle",Restaurant
+134,Emmerich Inc,Supermarket
+135,Kub-Gaylord,Gym
+136,Dooley-Sanford,Hospital
+137,Morar-Feil,Shop
+138,Hoppe-Rogahn,Cinema
+139,Wolff and Sons,Supermarket
+140,"Kuhic, Mante and Koepp",Restaurant
+141,"DuBuque, Morar and Mosciski",Office
+142,Auer Group,Office
+143,"Corwin, Miller and Rippin",Gym
+144,"Gleichner, Bechtelar and Braun",Supermarket
+145,Swaniawski-Fisher,Cinema
+146,"Walter, Schoen and Kiehn",Gym
+147,Leannon Group,Gym
+148,"Kemmer, Hills and Wisoky",Theater
+149,Brown Inc,Supermarket
+150,Fritsch LLC,Supermarket
+151,Connelly-Cruickshank,School
+152,Borer Inc,Cinema
+153,Rosenbaum-Paucek,Restaurant
+154,Klocko and Sons,Cinema
+155,Russel-Barrows,School
+156,McGlynn-Simonis,Cinema
+157,Johnston-Hane,School
+158,Turcotte-Hagenes,Cinema
+159,"Kuhn, O'Kon and Buckridge",Cinema
+160,"Fisher, Windler and Turner",Theater
+161,"Crona, Gutkowski and Haley",Shop
+162,"Lemke, Legros and Kuhn",Theater
+163,Mraz-O'Connell,Theater
+164,Kerluke-Nikolaus,Office
+165,"Thiel, Prohaska and Haag",Office
+166,Swaniawski-Stoltenberg,Shop
+167,Carter LLC,Office
+168,Kub Group,Theater
+169,"Wehner, Stoltenberg and Hermiston",Supermarket
+170,Lemke-Schuster,Hospital
+171,Douglas-Kunze,Bar
+172,"Wunsch, Franecki and Kozey",School
+173,Borer Group,Hospital
+174,"Little, Luettgen and Langworth",Restaurant
+175,Treutel-Hickle,Gym
+176,"McClure, Swaniawski and Hackett",School
+177,Gutkowski-Bruen,Cinema
+178,Upton-Aufderhar,Office
+179,Fadel-Jones,Cinema
+180,Jacobi-Mante,Shop
+181,"Moore, Grant and Carter",Hospital
+182,Romaguera-O'Kon,Theater
+183,Reilly Group,School
+184,Schmitt-Wisoky,Office
+185,"Herzog, Fisher and Auer",Office
+186,"Marquardt, Prohaska and Bradtke",Theater
+187,"Roob, Corwin and Block",Restaurant
+188,Oberbrunner Group,Gym
+189,"Feil, Johnson and Bruen",Supermarket
+190,Bergnaum-Gaylord,Supermarket
+191,Vandervort-Koepp,Gym
+192,Bins Inc,Supermarket
+193,VonRueden LLC,Theater
+194,Mosciski-Casper,Hospital
+195,"Kub, Willms and Heaney",Cinema
+196,Gibson-Koepp,Bar
+197,Harris and Sons,School
+198,Runte-Barton,Cinema
+199,"Labadie, Barton and Spencer",Shop
+200,Lebsack Inc,Office
+201,"Sauer, Johnson and Reynolds",Gym
+202,Howell-Botsford,Office
+203,Zboncak-Bernhard,Supermarket
+204,Schiller LLC,Bar
+205,Kunde-Schiller,Supermarket
+206,"Stokes, Crist and MacGyver",Gym
+207,Walter-Rippin,Shop
+208,Jacobs-Heidenreich,Office
+209,Renner-Reynolds,Theater
+210,Pouros-Haag,Shop
+211,"Schamberger, Mohr and Schmidt",Cinema
+212,"Botsford, Heller and Halvorson",Shop
+213,"Greenholt, Greenholt and White",Restaurant
+214,Bergstrom-Hirthe,Hospital
+215,Greenfelder-MacGyver,Office
+216,Hegmann LLC,Shop
+217,Hansen-Pacocha,Shop
+218,"Russel, Zboncak and Windler",Restaurant
+219,Orn LLC,Supermarket
+220,Wisoky-Wisoky,Gym
+221,"Adams, Morar and Wiza",Supermarket
+222,O'Connell Group,Supermarket
+223,Kuhlman-Maggio,Bar
+224,Towne and Sons,Hospital
+225,Gulgowski-Barton,Cinema
+226,"Cronin, Shanahan and Langosh",Hospital
+227,"Balistreri, Schulist and Pfannerstill",School
+228,Kutch-O'Connell,Restaurant
+229,"Cruickshank, Considine and Konopelski",Supermarket
+230,Leffler-Metz,Theater
+231,"Hammes, Goodwin and Wuckert",Shop
+232,"Hickle, Nader and McGlynn",Restaurant
+233,Trantow Group,School
+234,"VonRueden, Wuckert and Medhurst",Theater
+235,Toy LLC,Shop
+236,"Zboncak, Weissnat and Bailey",Theater
+237,Littel-Carroll,Bar
+238,Orn Inc,Gym
+239,Balistreri Inc,Bar
+240,Gottlieb Group,Gym
+241,Gibson and Sons,Gym
+242,"Fadel, Rempel and Luettgen",School
+243,McCullough Group,Cinema
+244,Turcotte-Hills,Restaurant
+245,"O'Connell, Zulauf and Cummings",Hospital
+246,Will Group,Shop
+247,Hackett-Larkin,Cinema
+248,Larson LLC,Cinema
+249,Rowe-Dickinson,School
+250,Fay and Sons,Shop
+251,Ryan and Sons,Supermarket
+252,"Bernhard, Ernser and Runolfsdottir",Restaurant
+253,Keeling and Sons,Office
+254,"Gutkowski, Cassin and Pfeffer",Restaurant
+255,"Ruecker, Conn and Waters",Cinema
+256,"Stiedemann, Runte and Mosciski",Cinema
+257,Roob Group,Cinema
+258,Littel Group,School
+259,"Kemmer, Kreiger and Hermiston",Gym
+260,"Nitzsche, Rice and Koch",Office
+261,Ortiz-Grant,Office
+262,Kuphal-Prohaska,Restaurant
+263,"Crona, Hermiston and Toy",Bar
+264,"Pfeffer, Little and Flatley",Gym
+265,"Daniel, Russel and Reilly",Office
+266,Mohr Group,Theater
+267,Turcotte-Harvey,Restaurant
+268,Heidenreich Group,Shop
+269,Koepp-Balistreri,School
+270,Braun Group,Theater
+271,Lockman-Boyer,School
+272,"Gleason, Schaefer and Schroeder",Hospital
+273,Funk-Hahn,Shop
+274,"Dickens, Stehr and Labadie",Cinema
+275,Kunde Group,Cinema
+276,Douglas Inc,Cinema
+277,"Leffler, Bashirian and Crooks",Supermarket
+278,"Balistreri, Turner and Harvey",Supermarket
+279,"Greenfelder, Rau and Greenfelder",School
+280,Greenfelder and Sons,Hospital
+281,"Schinner, Friesen and Rau",Theater
+282,Runte Inc,School
+283,Kub-Kris,Theater
+284,McGlynn-Green,Bar
+285,Schmeler-Schmidt,School
+286,"Pfeffer, Upton and Johnston",Cinema
+287,"Maggio, Wintheiser and Wisozk",Gym
+288,"Champlin, Kuhlman and Brakus",Supermarket
+289,Schneider-Little,Restaurant
+290,"Jast, Carter and Weissnat",Theater
+291,"Breitenberg, Wuckert and Cruickshank",Gym
+292,Spinka Group,Supermarket
+293,Stoltenberg-Hettinger,Cinema
+294,"Homenick, Hodkiewicz and Feil",Theater
+295,"Harris, Goodwin and Yost",Theater
+296,Mitchell Inc,School
+297,Bernier Group,Theater
+298,Rempel LLC,Hospital
+299,Abbott and Sons,Hospital
+300,Okuneva Group,Hospital
