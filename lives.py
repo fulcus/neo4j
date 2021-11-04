@@ -53,7 +53,7 @@ def lives_with():
 
     families = randomSublists(rows, num_families=80, max_size_families=2)
     for family in families:
-        for pair in itertools.combinations(family, 2):
+        for pair in itertools.permutations(family, 2):
             # print(pair)
             s = "CREATE (:Person{cf:'" + pair[0][3] + "'})-[: LIVES_WITH]->(:Person{cf:'" + pair[1][3] + "'}) \nCREATE (:Person{cf:'" + pair[1][3] + "'})-[: LIVES_WITH]->(:Person{cf:'" + pair[0][3] + "'}) \n"
             f.write(s)
