@@ -1,8 +1,6 @@
 # importing csv module
 import csv
 import random
-import itertools
-
 
  
 def read_csv(filename):
