@@ -3,30 +3,29 @@ import csv
 import random
 import itertools
 
-# csv file name
-filename = "csv/people.csv"
+def read_csv(filename):
+    # initializing the titles and rows list
+    fields = []
+    rows = []
 
-# initializing the titles and rows list
-fields = []
-rows = []
+    # reading csv file
+    with open(filename, 'r') as csvfile:
+        # creating a csv reader object
+        csvreader = csv.reader(csvfile)
+        
+        # extracting field names through first row
+        fields = next(csvreader)
 
-# reading csv file
-with open(filename, 'r') as csvfile:
-	# creating a csv reader object
-	csvreader = csv.reader(csvfile)
-	
-	# extracting field names through first row
-	fields = next(csvreader)
+        # extracting each data row one by one
+        for row in csvreader:
+            rows.append(row)
 
-	# extracting each data row one by one
-	for row in csvreader:
-		rows.append(row)
+        # get total number of rows
+        print("Total no. of rows: %d"%(csvreader.line_num))
 
-	# get total number of rows
-	print("Total no. of rows: %d"%(csvreader.line_num))
-
-# printing the field names
-print('Field names are:' + ', '.join(field for field in fields) + '\n')
+    # printing the field names
+    print('Field names are:' + ', '.join(field for field in fields) + '\n')
+    return rows
 
 # Field names are: 0: first_name, 1: last_name, 2: email, 3: cf
 
@@ -49,13 +48,14 @@ def lives_with():
     MATCH (a:Person), (b:Person) WHERE a.cf != b.cf and a.cf = '1' and b.cf = '2' 
     CREATE (a)-[r: LIVES_WITH]->(b)
     '''
+    rows = read_csv('csv/people.csv')
     f = open('rel/lives_with.txt', 'w')
 
     families = randomSublists(rows, num_families=80, max_size_families=2)
     for family in families:
         for pair in itertools.combinations(family, 2):
             # print(pair)
-            s = "MATCH (a:Person), (b:Person) WHERE a.cf = '" + pair[0][3] + "' and b.cf = '" + pair[1][3] + "' CREATE (a)-[r: LIVES_WITH]-(b)\n"
+            s = "CREATE (:Person{cf:'" + pair[0][3] + "'})-[: LIVES_WITH]->(:Person{cf:'" + pair[1][3] + "'}) \nCREATE (:Person{cf:'" + pair[1][3] + "'})-[: LIVES_WITH]->(:Person{cf:'" + pair[0][3] + "'}) \n"
             f.write(s)
 
-
+lives_with()
