@@ -55,7 +55,7 @@ def lives_with():
     for family in families:
         for pair in itertools.permutations(family, 2):
             # print(pair)
-            s = "CREATE (:Person{cf:'" + pair[0][3] + "'})-[LIVES_WITH]->(:Person{cf:'" + pair[1][3] + "'})"
+            s = "MATCH (a:Person{cf:'"+ pair[0][3] +"'}), (b:Person{cf:'"+ pair[1][3] +"'}) CREATE (a)-[:LIVES_WITH]->(b);\n"
             f.write(s)
 
 lives_with()

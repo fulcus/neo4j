@@ -51,7 +51,7 @@ def visited(num_visits):
     for i in range(num_visits):
         cf = random.choice(persons)[3]
         place = random.choice(places)[0]
-        s = f'MATCH (a:Person), (p:Place) WHERE a.cf = {cf} and p.id = {place}  CREATE (a)-[r: VISITED {{"datetime": "{random_dates[i]}"}}]->(p)\n'
+        s ="MATCH (a:Person{cf:'"+cf+"'}), (p:Place{id:'"+place+"'}) CREATE (a)-[:VISITED{datetime: '"+ str(random_dates[i])+"'}]->(b);\n"
         f.write(s)
 
-visited(10)
+visited(1000)

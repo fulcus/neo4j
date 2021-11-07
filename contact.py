@@ -77,7 +77,7 @@ def contact_with():
         random_date = start_date + timedelta(days=random.random() * (end_date - start_date).days) 
         date = random_date.strftime("%Y-%m-%d")
         time = random_date.strftime("%H:%M:%S")
-        s = "MATCH (a:Person{cf:'" + rows[randomNumber1][3] + "'}), (b:Person{cf:'" + rows[randomNumber2][3] + "'}) CREATE (a)-[:CONTACT_WITH{date: datetime('" + date + "T"+time+"'), coord: point({x: "+ str(randomX) +", y: " + str(randomY) +"})}]->(b)\n"
+        s = "MATCH (a:Person{cf:'" + rows[randomNumber1][3] + "'}), (b:Person{cf:'" + rows[randomNumber2][3] + "'}) CREATE (a)-[:CONTACT_WITH{date: datetime('" + date + "T"+time+"'), coord: point({x: "+ str(randomX) +", y: " + str(randomY) +"})}]->(b);\n"
         f.write(s)
 
 

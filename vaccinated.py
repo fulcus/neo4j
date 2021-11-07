@@ -42,7 +42,7 @@ def vaccinated_with(num_vaccines):
     for i in range(num_vaccines):
         cf = random.choice(persons)[3]
         id = random.choice(vaccines)[0]
-        s = f'CREATE (:Person{{cf: {cf}}})-[VACCINATED_WITH]->(:Vaccine{{id: {id}}})\n'
+        s = "MATCH (a:Person{cf:'" + cf +"'}), (b:Vaccine{id:'" + id + "'}) CREATE (a)-[:VACCINATED_WITH]->(b);\n"
         f.write(s)
 
-vaccinated_with(10)
+vaccinated_with(600)
