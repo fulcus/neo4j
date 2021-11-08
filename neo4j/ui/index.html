@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-    <title>Prova</title>
+    <title>Neovis.js Simple Example</title>
     <style type="text/css">
         html, body {
             font: 16pt arial;
@@ -13,52 +13,85 @@
             border: 1px solid lightgray;
             font: 22pt arial;
         }
-        </style>
-        <script src="https://cdn.neo4jlabs.com/neovis.js/v1.5.0/neovis.js"></script>
-    </head>
+
+    </style>
+
+    <!-- FIXME: load from dist -->
+    <script type="text/javascript" src="https://cdn.neo4jlabs.com/neovis.js/v1.5.0/neovis.js"></script>
 
 
-    <script>
-        function draw() {
-            var config = {
-                container_id: "viz",
-                server_url: "neo4j://localhost:7687",
-                server_user: "neo4j",
-                server_password: "neo4j",
-                labels: {
-                    "Person": {
-                        "caption": "last_name",
-                        "size": "2.0"
-                    }
-                },
-                relationships: {
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
 
-                },
-                initial_cypher: "MATCH(n:Person)-[r:CONTACT_WITH]->(n2: Person) RETURN * LIMIT 10"
-            }
+    <script type="text/javascript">
+		// define config car
+		// instantiate nodevis object
+		// draw
 
-            var viz = new NeoVis.default(config);
-            viz.render();
-        }
+		var viz;
+
+		function draw() {
+			var config = {
+				container_id: "viz",
+				server_url: "bolt://localhost:7687",
+				server_user: "neo4j",
+				server_password: "limbo-atlas-bison-lesson-section-8216",
+				labels: {
+					//"Character": "name",
+					"Character": {
+						"caption": "name",
+						"size": "pagerank",
+						"community": "community"
+						//"sizeCypher": "MATCH (n) WHERE id(n) = {id} MATCH (n)-[r]-() RETURN sum(r.weight) AS c"
+					}
+				},
+				relationships: {
+					"INTERACTS": {
+						"thickness": "weight",
+						"caption": false
+					}
+				},
+				initial_cypher: "MATCH (n) RETURN n"
+			};
+
+			viz = new NeoVis.default(config);
+			viz.render();
+			console.log(viz);
+
+		}
     </script>
+</head>
+<body onload="draw()">
+<div id="viz"></div>
 
-    <body onload="draw()">
-        <div id="viz"></div>
-        Cypher query: <textarea rows="4" cols=50 id="cypher"></textarea><br>
-        <input type="submit" value="Submit" id="reload">
-    </body>
 
-    <script>
-        $("#reload").click(function() {
-    
-            var cypher = $("#cypher").val();
-    
-            if (cypher.length > 3) {
-                viz.renderWithCypher(cypher);
-            } else {
-                console.log("reload");
-                viz.reload();
-            }
-        });
-    </script>
+Cypher query: <textarea rows="4" cols=50 id="cypher"></textarea><br>
+<input type="submit" value="Submit" id="reload">
+<input type="submit" value="Stabilize" id="stabilize">
+
+
+</body>
+
+<script>
+	$("#reload").click(function() {
+
+		var cypher = $("#cypher").val();
+
+		if (cypher.length > 3) {
+			viz.renderWithCypher(cypher);
+		} else {
+			console.log("reload");
+			viz.reload();
+
+		}
+
+	});
+
+	$("#stabilize").click(function() {
+		viz.stabilize();
+	})
+
+</script>
 </html>
