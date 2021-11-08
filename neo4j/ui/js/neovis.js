@@ -6,9 +6,9 @@ var viz;
 
 function draw() {
     var config = {
-        encrypted: "ENCRYPTION_OFF",
+        //encrypted: "ENCRYPTION_ON",
         container_id: "viz",
-        server_url: "bolt://6e1205c9.databases.neo4j.io",
+        server_url: "neo4j://6e1205c9.databases.neo4j.io",
         server_user: "neo4j",
         server_password: "Sewg53RImYM_5SAI0QA4DYOs7iOsHIMVcSmgCe9YuSE",
         labels: {
