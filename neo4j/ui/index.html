@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+    <title>COVID-19 Database</title>
+    <style type="text/css">
+        html, body {
+            font: 16pt arial;
+        }
+
+        #viz {
+            width: 900px;
+            height: 700px;
+            border: 1px solid lightgray;
+            font: 22pt arial;
+        }
+
+    </style>
+
+    <script type="text/javascript" src="https://cdn.neo4jlabs.com/neovis.js/v1.5.0/neovis.js"></script>
+    
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.min.js"
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+            crossorigin="anonymous"></script>
+
+    <script type="text/javascript" src="js/neovis.js"></script>
+</head>
+<body onload="draw()">
+<div id="viz"></div>
+
+
+Cypher query: <textarea rows="4" cols=50 id="cypher"></textarea><br>
+<input type="submit" value="Submit" id="reload">
+<input type="submit" value="Stabilize" id="stabilize">
+
+
+</body>
+
+<script>
+	$("#reload").click(function() {
+
+		var cypher = $("#cypher").val();
+
+		if (cypher.length > 3) {
+			viz.renderWithCypher(cypher);
+		} else {
+			console.log("reload");
+			viz.reload();
+
+		}
+
+	});
+
+	$("#stabilize").click(function() {
+		viz.stabilize();
+	})
+
+</script>
+</html>

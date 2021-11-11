@@ -15,7 +15,7 @@ def tested_with(num_tests):
     for i in range(num_tests):
         cf = random.choice(persons)[3]
         id = random.choice(tests)[0]
-        s = "MATCH (a:Person{cf:'" + cf +"'}), (b:Test{id:'" + id + "'}) CREATE (a)-{:TESTED_WITH]->(b);\n"
+        s = "MATCH (a:Person{cf:'" + cf +"'}), (b:Test{id:'" + id + "'}) CREATE (a)-[:TESTED_WITH]->(b);\n"
         f.write(s)
 
-tested_with(10)
+tested_with(1500)
