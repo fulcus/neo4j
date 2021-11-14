@@ -291,20 +291,21 @@
 <div id="queries">
     Queries:<br><br>
     <div id="query">
-        1. Given a positive person, find all the places he has visited in the last 14 days<br>
+        1. Given a positive person, find all the places he has visited in the previous 14 days.<br>
         <input type="submit" value="Go" id="q1"><br><br>
-        2. Find all families that have had a positive member who hasn't infected any other<br> 
-        family member<br>
-        <input type="submit" value="Go" id="q1"><br><br>
+        2. Find out how many families have had an infected member who, however, <br> 
+        has not infected anyone else within the family. <br> 
+        <input type="submit" value="Go" id="q2"><br><br>
         3. Find vaccinated people who have been in contact with someone positive and<br>
-        haven't been infected<br>
-        <input type="submit" value="Go" id="q1"><br><br>
-        4. Find all people that on December 31st have been to a bar and in the next 14 days<br>
-        resulted positive to a test<br>
-        <input type="submit" value="Go" id="q1"><br><br>
-        5. Find all positive people who are certain about who has infected them (have been<br>
-        in contact with only one positive)<br>
-        <input type="submit" value="Go" id="q1"><br><br>
+        haven't been infected.<br>
+        <input type="submit" value="Go" id="q3"><br><br>
+        4. Find the people who were at the bar on September 22 and found themselves <br>
+        positive over the next 14 days.<br>
+        <input type="submit" value="Go" id="q4"><br><br>
+        5. Find all the positive people of whom we are sure of the identity of his<br>
+        infector (i.e. he has been in contact with only one positive).<br>
+
+        <input type="submit" value="Go" id="q5"><br><br>
     </div>
 </div>
 
@@ -313,6 +314,13 @@
 </body>
 
 <script>
+
+    $("#submit_person").click(function(){
+        var person = new Person($("first_name").val(), $("last_name").val(), $("cf").val() ,$("email").val());
+            
+
+    });
+
 	$("#reload").click(function() {
 
 		var cypher = $("#cypher").val();
@@ -332,9 +340,31 @@
 	})
 
     $("#q1").click(function(){
-        var cypher = "MATCH (t:Test{outcome:'true'})<-[:TESTED_WITH]-(p:Person)-[v:VISITED]->(q:Place) WHERE date(t.date) >= date(v.datetime) AND date(t.date) <= date(v.datetime) + duration('P14D') RETURN q.name, p.cf";
+        var cypher = "MATCH (t:Test{outcome:'true'})<-[r:TESTED_WITH]-(p:Person)-[v:VISITED]->(q:Place) WHERE date(t.date) >= date(v.datetime) AND date(t.date) <= date(v.datetime) + duration('P14D') RETURN q, p, v, t, r";
         viz.renderWithCypher(cypher);
     })
+
+    $("#q2").click(function(){
+        var cypher = "MATCH (p)-[r:LIVES_WITH]-(p1:Person)-[t:TESTED_WITH]->(t1:Test{outcome:'true'}), (t2:Test{outcome:'true'})WHERE date(t1.date) <= date(t2.date) AND date(t1.date)+duration('P10D') >= date(t2.date)AND NOT (p)-[:TESTED_WITH]->(t2)RETURN DISTINCT p,p1,r,t,t1";
+        viz.renderWithCypher(cypher);
+    })
+
+    $("#q3").click(function(){
+        var cypher = "MATCH (v:Vaccine)<-[r1:VACCINATED_WITH]-(p1:Person)-[c:CONTACT_WITH]->(p2:Person)-[r2:TESTED_WITH]->(t2:Test{outcome:'true'}), (t1:Test{outcome:'true'}) WHERE date(t1.date) >= date(t2.date) AND date(t2.date) >= date(c.date) AND date(t1.date) <= date(c.date)+duration('P14D') AND date(t2.date) <= date(c.date)+duration('P14D') AND NOT (t1)<-[:TESTED_WITH]-(p1) RETURN DISTINCT p1, p2, c, r1, v, r2, t2";
+        viz.renderWithCypher(cypher);
+    })
+
+    $("#q4").click(function(){
+        var cypher = "MATCH (t:Test{outcome:'true'})<-[r:TESTED_WITH]-(p:Person)-[v:VISITED{datetime:datetime('2021-08-15')}]->(q:Place{type:'Bar'})WHERE date(t.date) <= date(v.datetime)+duration('P14D') AND date(t.date) >= date(v.datetime)RETURN p,v,q,r,t";
+        viz.renderWithCypher(cypher);
+    })
+
+    $("#q5").click(function(){
+        var cypher = "MATCH (t1:Test{outcome:'true'})<-[j:TESTED_WITH]-(p1:Person)-[r:CONTACT_WITH]->(p2:Person)-[k:TESTED_WITH]->(t:Test{outcome:'true'}) WITH count(p2) AS c, p1 AS a, r AS contact, t AS test, p2 AS b, t1 AS test1, k AS tested, j AS tested1 WHERE c = 1 AND date(contact.date) >= date(test.date)-duration('P14D') AND date(contact.date) <= date(test.date) AND date(contact.date) <= date(test1.date) AND date(contact.date)+duration('P14D') >= date(test1.date) RETURN a, b, contact, tested, test, test1, tested1";
+        viz.renderWithCypher(cypher);
+    })
+
+
 
 </script>
 </html>
