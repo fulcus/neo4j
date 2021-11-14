@@ -1,5 +1,3 @@
-
-
 $("#submit_person").click(function(){
     var cypher = "CREATE(p:Person{first_name:'"+$("#first_name").val()+"', last_name:'"+$("#last_name").val()+"', cf:'"+$("#cf").val()+"', email:'"+$("#email").val()+"'}) RETURN p";
     viz.renderWithCypher(cypher);
