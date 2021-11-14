@@ -50,6 +50,12 @@ $("#findPerson").click(function(){
         command = match_command.concat(set_command);
     }
     command = command.concat(" RETURN p");
+    cf = null;
+    first_name = null;
+    last_name = null;
+    email = null;
+    $("#find_node").val("default");
+    
     
     console.log(command);
     viz.renderWithCypher(command);
@@ -82,6 +88,13 @@ $("#findPlace").click(function(){
         command = match_command.concat(set_command);
     }
     command = command.concat(" RETURN p");
+
+    id = null;
+    name = null;
+    type = "default";
+    $("#find_node").val("default");
+
+
     
     console.log(command);
     viz.renderWithCypher(command);
@@ -114,6 +127,12 @@ $("#findTest").click(function(){
         command = match_command.concat(set_command);
     }
     command = command.concat(" RETURN t");
+
+    id=null;
+    date=null;
+    outcome="default";
+    $("#find_node").val("default");
+
     
     console.log(command);
     viz.renderWithCypher(command);
@@ -146,6 +165,12 @@ $("#findVaccine").click(function(){
         command = match_command.concat(set_command);
     }
     command = command.concat(" RETURN v");
+    
+    id=null;
+    date=null;
+    name="default";
+    $("#find_node").val("default");
+
 
     console.log(command);
     viz.renderWithCypher(command);
@@ -188,6 +213,13 @@ $("#deletePerson").click(function(){
     }
     command = command.concat(" DETACH DELETE p");
 
+    cf = null;
+    first_name = null;
+    last_name = null;
+    email = null;
+    $("#delete_node").val("default");
+
+
     console.log(command);
     viz.renderWithCypher(command);
 });
@@ -221,7 +253,13 @@ $("#deletePlace").click(function(){
     if(where_command.length > 6) {
         command = match_command.concat(where_command);
     }
-    command = command.concat(" DETACH DELETE p");
+    command = command.concat(" DETACH DELETE p")
+    
+    id = null;
+    name = null;
+    type = "default";
+    $("#delete_node").val("default");
+
 
     console.log(command);
     viz.renderWithCypher(command);
@@ -258,6 +296,12 @@ $("#deleteTest").click(function(){
     }
     command = command.concat(" DETACH DELETE t");
 
+    id=null;
+    date=null;
+    outcome="default";
+    $("#delete_node").val("default");
+
+
     console.log(command);
     viz.renderWithCypher(command);
 });
@@ -292,6 +336,12 @@ $("#deleteVaccine").click(function(){
         command = match_command.concat(where_command);
     }
     command = command.concat(" DETACH DELETE v");
+
+    id=null;
+    date=null;
+    name="default";
+    $("#delete_node").val("default");
+
 
     console.log(command);
     viz.renderWithCypher(command);
