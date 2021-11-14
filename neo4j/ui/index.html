@@ -221,7 +221,8 @@
 
 
     <div id="command">
-        <br><br>- Update/Delete<br> 
+        <br><br>- Update<br> 
+
         Find a
         <SELECT id="find_node" onchange="findNode()">
             <option value="person">Person</option>
@@ -233,14 +234,16 @@
         node:<br>
 
         <span id="find_person">
-            firstName: <textarea rows="1" cols=10 id="first_name"></textarea> lastName: <textarea rows="1" cols=10 id="last_name"></textarea><br>
-            cf: <textarea rows="1" cols=15 id="cf"></textarea> email: <textarea rows="1" cols=10 id="email"></textarea>
-            <input type="submit" value="Find" id="findPerson">
+            cf: <textarea rows="1" cols=15 id="update_cf"></textarea><br>
+            firstName: <textarea rows="1" cols=10 id="update_first_name"></textarea> lastName: <textarea rows="1" cols=10 id="update_last_name"></textarea>
+            email: <textarea rows="1" cols=10 id="update_email"></textarea>
+            <input type="submit" value="Update" id="findPerson">
         </span>
 
         <span id="find_place">
-            placeType: <SELECT id="place_type">
-                <option value="restaurant">Restaurant</option>
+            id: <textarea rows="1" cols=15 id="update_place_id"></textarea><br>
+            placeName: <textarea rows="1" cols=15 id="update_place_name"></textarea><br>
+            placeType: <SELECT id="update_place_type">
                 <option value="hospital">Hospital</option>
                 <option value="bar">Bar</option>
                 <option value="gym">Gym</option>
@@ -252,30 +255,31 @@
                 <option value="shop">Shop</option>
                 <option value='' selected>Select a type</option>
             </SELECT>
-            placeName: <textarea rows="1" cols=15 id="place_name"></textarea>
-            <input type="submit" value="Find" id="findPlace">
+            <input type="submit" value="Update" id="findPlace">
         </span>
 
         <span id="find_test">
-            date: <input type="date" id="test_date">
-            outcome: <SELECT id="outcome_type">
+            id: <textarea rows="1" cols=15 id="update_test_id"></textarea><br>
+            date: <input type="date" id="update_test_date">
+            outcome: <SELECT id="update_outcome_type">
                 <option value="positive">Positive</option>
                 <option value="negative">Negative</option>
                 <option value='' selected>Choose an option</option>
             </SELECT>
-            <input type="submit" value="Find" id="findTest">
+            <input type="submit" value="Update" id="findTest">
         </span>
 
         <span id="find_vaccine">
-            date: <input type="date" id="test_date">
-            name: <SELECT id="vaccine_type">
+            id: <textarea rows="1" cols=15 id="update_vaccine_id"></textarea><br>
+            date: <input type="date" id="update_vaccine_date">
+            name: <SELECT id="update_vaccine_name">
                 <option value="astrazeneca">Astrazeneca</option>
                 <option value="pfizer">Pfizer</option>
                 <option value="johnson&johnson">Johnson&Johnson</option>
                 <option value="moderna">Moderna</option>
                 <option value='' selected>Choose an option</option>
             </SELECT>
-            <input type="submit" value="Find" id="findVaccine">
+            <input type="submit" value="Update" id="findVaccine">
         </span>
     </div>
 
@@ -313,6 +317,7 @@
 
 </body>
 
+<script type="text/javascript" src="js/updates.js"></script>
 <script type="text/javascript" src="js/queries.js"></script>
 
 </html>

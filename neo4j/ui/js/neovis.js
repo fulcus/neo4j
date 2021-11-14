@@ -13,7 +13,7 @@ function draw() {
         //encrypted: "ENCRYPTION_ON",
         //trust: "TRUST_SYSTEM_CA_SIGNED_CERTIFICATES",
         container_id: "viz",
-        server_url: "bolt://localhost:7474",
+        server_url: "bolt://localhost:7687",
         server_user: "neo4j",
         server_password: "neo4j",
         labels: {
