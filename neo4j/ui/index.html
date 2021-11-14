@@ -81,9 +81,9 @@
                 <option value="lives">LIVES_WITH</option>
                 <option value="contact">CONTACT_WITH</option>
                 <option value="visited">VISITED</option>
-                <option value="tested">TESTED</option>
+                <option value="tested">TESTED_WITH</option>
                 <option value="vaccinated">VACCINATED_WITH</option>
-                <option value='' selected>Select a type </option>
+                <option value='default' selected>Select a type </option>
             </SELECT>
             relationship:<br>
         </span> 
@@ -107,9 +107,9 @@
                 <option value="office">Office</option>
                 <option value="supermarket">Supermarket</option>
                 <option value="shop">Shop</option>
-                <option value='' selected>Select a type</option>
+                <option value='default' selected>Select a type</option>
             </SELECT>
-            <br>placeName: <textarea rows="1" cols=15 id="place_name"></textarea>
+            <br>placeName: <textarea rows="1" cols=15 id="place_name"></textarea> placeId: <textarea rows="1" cols=5 id="place_id"></textarea>
             <input type="submit" value="Submit" id="submit_place">
         </span>
 
@@ -118,55 +118,55 @@
             outcome: <SELECT id="outcome_type">
                 <option value="positive">Positive</option>
                 <option value="negative">Negative</option>
-                <option value='' selected>Choose an option</option>
+                <option value='default' selected>Choose an option</option>
             </SELECT>
             <input type="submit" value="Submit" id="submit_test">
         </span>
 
         <span id="vaccine_display">
-            date: <input type="date" id="test_date">
-            name: <SELECT id="vaccine_type">
+            date: <input type="date" id="vaccine_date">
+            name: <SELECT id="vaccine_name">
                 <option value="astrazeneca">Astrazeneca</option>
                 <option value="pfizer">Pfizer</option>
                 <option value="johnson&johnson">Johnson&Johnson</option>
                 <option value="moderna">Moderna</option>
-                <option value='' selected>Choose an option</option>
+                <option value='default' selected>Choose an option</option>
             </SELECT>
             <input type="submit" value="Submit" id="submit_vaccine">
         </span>
 
         <span id="lives_display">
             Person 1: <br>
-            firstName: <textarea rows="1" cols=10 id="first_name"></textarea> lastName: <textarea rows="1" cols=10 id="last_name"></textarea><br>
-            cf: <textarea rows="1" cols=15 id="cf"></textarea> email: <textarea rows="1" cols=10 id="email"></textarea><br><br>
+            firstName: <textarea rows="1" cols=10 id="first_name1"></textarea> lastName: <textarea rows="1" cols=10 id="last_name1"></textarea><br>
+            cf: <textarea rows="1" cols=15 id="cf1"></textarea> email: <textarea rows="1" cols=10 id="email1"></textarea><br><br>
 
             Person 2: <br>
-            firstName: <textarea rows="1" cols=10 id="first_name"></textarea> lastName: <textarea rows="1" cols=10 id="last_name"></textarea><br>
-            cf: <textarea rows="1" cols=15 id="cf"></textarea> email: <textarea rows="1" cols=10 id="email"></textarea><br>
+            firstName: <textarea rows="1" cols=10 id="first_name2"></textarea> lastName: <textarea rows="1" cols=10 id="last_name2"></textarea><br>
+            cf: <textarea rows="1" cols=15 id="cf2"></textarea> email: <textarea rows="1" cols=10 id="email2"></textarea><br>
             <input type="submit" value="Submit" id="submit_lives">
         </span>
 
         <span id="contact_display">
             Person 1: <br>
-            firstName: <textarea rows="1" cols=10 id="first_name"></textarea> lastName: <textarea rows="1" cols=10 id="last_name"></textarea><br>
-            cf: <textarea rows="1" cols=15 id="cf"></textarea> email: <textarea rows="1" cols=10 id="email"></textarea><br><br>
+            firstName: <textarea rows="1" cols=10 id="fn_1"></textarea> lastName: <textarea rows="1" cols=10 id="ln_1"></textarea><br>
+            cf: <textarea rows="1" cols=15 id="cf_1"></textarea> email: <textarea rows="1" cols=10 id="email_1"></textarea><br><br>
 
             Person 2: <br>
-            firstName: <textarea rows="1" cols=10 id="first_name"></textarea> lastName: <textarea rows="1" cols=10 id="last_name"></textarea><br>
-            cf: <textarea rows="1" cols=15 id="cf"></textarea> email: <textarea rows="1" cols=10 id="email"></textarea><br><br>
+            firstName: <textarea rows="1" cols=10 id="fn_2"></textarea> lastName: <textarea rows="1" cols=10 id="ln_2"></textarea><br>
+            cf: <textarea rows="1" cols=15 id="cf_2"></textarea> email: <textarea rows="1" cols=10 id="email_2"></textarea><br><br>
 
-            date: <input type="datetime-local" id="contact_date"> coord: <textarea rows="1" cols=15 id="coord"></textarea><br>
+            date: <input type="datetime-local" id="contact_date"> coord: <textarea rows="1" cols=15 id="contact_coord"></textarea><br>
             <input type="submit" value="Submit" id="submit_contact">
 
         </span>
 
         <span id="visited_display">
             Person:<br>
-            firstName: <textarea rows="1" cols=10 id="first_name"></textarea> lastName: <textarea rows="1" cols=10 id="last_name"></textarea><br>
-            cf: <textarea rows="1" cols=15 id="cf"></textarea> email: <textarea rows="1" cols=10 id="email"></textarea><br><br>
+            firstName: <textarea rows="1" cols=10 id="fn"></textarea> lastName: <textarea rows="1" cols=10 id="ln"></textarea><br>
+            cf: <textarea rows="1" cols=15 id="cfp"></textarea> email: <textarea rows="1" cols=10 id="emailp"></textarea><br><br>
 
             Place:<br>
-            placeType: <SELECT id="place_type">
+            placeType: <SELECT id="place_typep">
                 <option value="restaurant">Restaurant</option>
                 <option value="hospital">Hospital</option>
                 <option value="bar">Bar</option>
@@ -177,9 +177,9 @@
                 <option value="office">Office</option>
                 <option value="supermarket">Supermarket</option>
                 <option value="shop">Shop</option>
-                <option value='' selected>Select a type</option>
+                <option value='default' selected>Select a type</option>
             </SELECT>
-            placeName: <textarea rows="1" cols=15 id="place_name"></textarea><br><br>
+            placeName: <textarea rows="1" cols=15 id="place_namep"></textarea><br><br>
 
             date: <input type="datetime-local" id="visit_date"><br>
             <input type="submit" value="Submit" id="submit_visited">
@@ -187,32 +187,32 @@
 
         <span id="tested_display">
             Person:<br>
-            firstName: <textarea rows="1" cols=10 id="first_name"></textarea> lastName: <textarea rows="1" cols=10 id="last_name"></textarea><br>
-            cf: <textarea rows="1" cols=15 id="cf"></textarea> email: <textarea rows="1" cols=10 id="email"></textarea><br><br>
+            firstName: <textarea rows="1" cols=10 id="fnq"></textarea> lastName: <textarea rows="1" cols=10 id="lnq"></textarea><br>
+            cf: <textarea rows="1" cols=15 id="cfq"></textarea> email: <textarea rows="1" cols=10 id="emailq"></textarea><br><br>
 
             Test:<br>
-            date: <input type="date" id="test_date">
-            outcome: <SELECT id="outcome_type">
+            date: <input type="date" id="test_dateq">
+            outcome: <SELECT id="outcome_typeq">
                 <option value="positive">Positive</option>
                 <option value="negative">Negative</option>
-                <option value='' selected>Choose an option</option>
+                <option value='default' selected>Choose an option</option>
             </SELECT><br>
             <input type="submit" value="Submit" id="submit_tested">
         </span>
 
         <span id="vaccinated_display">
             Person:<br>
-            firstName: <textarea rows="1" cols=10 id="first_name"></textarea> lastName: <textarea rows="1" cols=10 id="last_name"></textarea><br>
-            cf: <textarea rows="1" cols=15 id="cf"></textarea> email: <textarea rows="1" cols=10 id="email"></textarea><br><br>
+            firstName: <textarea rows="1" cols=10 id="fnr"></textarea> lastName: <textarea rows="1" cols=10 id="lnr"></textarea><br>
+            cf: <textarea rows="1" cols=15 id="cfr"></textarea> email: <textarea rows="1" cols=10 id="emailr"></textarea><br><br>
 
             Vaccine:<br>
-            date: <input type="date" id="test_date">
-            name: <SELECT id="vaccine_type">
+            date: <input type="date" id="vaccine_dater">
+            name: <SELECT id="vaccine_typer">
                 <option value="astrazeneca">Astrazeneca</option>
                 <option value="pfizer">Pfizer</option>
                 <option value="johnson&johnson">Johnson&Johnson</option>
                 <option value="moderna">Moderna</option>
-                <option value='' selected>Choose an option</option>
+                <option value='default' selected>Choose an option</option>
             </SELECT><br>
             <input type="submit" value="Submit" id="submit_vaccinated">
         </span>
