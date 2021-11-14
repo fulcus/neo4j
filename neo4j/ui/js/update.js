@@ -23,6 +23,7 @@ function space_or_and(where_command) {
 $("#findPerson").click(function(){
     person_display.style.display="none";
     node.style.display="none";
+    find_person.style.display="none";
     // $("#command_type").val("default");
     // $("#node_type").val("default");
 
@@ -57,6 +58,8 @@ $("#findPerson").click(function(){
 $("#findPlace").click(function(){
     person_display.style.display="none";
     node.style.display="none";
+    find_place.style.display="none";
+
     //$("#command_type").val("default");
     // $("#node_type").val("default");
 
@@ -87,6 +90,8 @@ $("#findPlace").click(function(){
 $("#findTest").click(function(){
     person_display.style.display="none";
     node.style.display="none";
+    find_test.style.display="none";
+
     //$("#command_type").val("default");
     // $("#node_type").val("default");
 
@@ -117,6 +122,8 @@ $("#findTest").click(function(){
 $("#findVaccine").click(function(){
     person_display.style.display="none";
     node.style.display="none";
+    find_vaccine.style.display="none";
+
     //$("#command_type").val("default");
     // $("#node_type").val("default");
 
@@ -149,6 +156,8 @@ $("#findVaccine").click(function(){
 $("#deletePerson").click(function(){
     person_display.style.display="none";
     node.style.display="none";
+    delete_person.style.display="none";
+
     // $("#command_type").val("default");
     // $("#node_type").val("default");
 
@@ -186,6 +195,8 @@ $("#deletePerson").click(function(){
 $("#deletePlace").click(function(){
     person_display.style.display="none";
     node.style.display="none";
+    delete_place.style.display="none";
+
     //$("#command_type").val("default");
     // $("#node_type").val("default");
 
@@ -219,6 +230,8 @@ $("#deletePlace").click(function(){
 $("#deleteTest").click(function(){
     person_display.style.display="none";
     node.style.display="none";
+    delete_test.style.display="none";
+
     //$("#command_type").val("default");
     // $("#node_type").val("default");
 
@@ -252,6 +265,8 @@ $("#deleteTest").click(function(){
 $("#deleteVaccine").click(function(){
     person_display.style.display="none";
     node.style.display="none";
+    delete_vaccine.style.display="none";
+
     //$("#command_type").val("default");
     // $("#node_type").val("default");
 
