@@ -12,7 +12,7 @@ def tested_with(num_tests):
     tests = read_csv(os.getcwd() + '/csv/tests.csv')
     f = open(os.getcwd() + '/rel/tested.txt', 'w')
 
-    for t in test:
+    for t in tests:
         cf = random.choice(persons)[3]
         id = t[0]
         s = "MATCH (a:Person{cf:'" + cf +"'}), (b:Test{id:'" + id + "'}) CREATE (a)-[:TESTED_WITH]->(b);\n"
