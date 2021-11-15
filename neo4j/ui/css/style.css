@@ -1,0 +1,45 @@
+html, body {
+    font: 16pt arial;
+}
+
+
+
+#viz {
+    width: 100%;
+    height: 100vh;
+    border: 1px solid lightgray;
+    font: 22pt arial;
+}
+
+#queries {
+    left: 820px;
+    top: 80px;
+}
+
+#text {
+    top: 620px;
+}
+
+#query {
+    font: 15pt arial;
+}
+
+#commands {
+    background-color: #4c4c4c;
+    color: white;
+    padding: 20px;
+}
+
+#cypher{
+    width: 100%;
+}
+
+.command {
+    font: 12pt arial;
+}
+
+#commands-container, #queries-container, #cypher-container{
+    display: none;
+    
+}
+

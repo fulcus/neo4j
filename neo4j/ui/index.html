@@ -1,407 +1,418 @@
 <!doctype html>
-<html>
+<html lang="en">
 
 <head>
-    <title>COVID-19 Database</title>
-    <style type="text/css">
-        html,
-        body {
-            font: 16pt arial;
-        }
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        #viz {
-            width: 800px;
-            height: 600px;
-            border: 1px solid lightgray;
-            font: 22pt arial;
-            position: absolute;
-        }
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-        #queries {
-            position: relative;
-            left: 820px;
-            top: 80px;
-        }
-
-        #text {
-            position: absolute;
-            top: 620px;
-        }
-
-        #query {
-            font: 12pt arial;
-        }
-
-        #commands {
-            position: relative;
-            left: 820px;
-        }
-
-        .command {
-            font: 12pt arial;
-            position: relative;
-            top: 20px;
-        }
-    </style>
-
-    <script type="text/javascript" src="https://cdn.neo4jlabs.com/neovis.js/v1.5.0/neovis.js"></script>
-
+    <link rel="stylesheet" href="css/style.css">
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 
     <script type="text/javascript" src="js/neovis.js"></script>
+    <script type="text/javascript" src="https://cdn.neo4jlabs.com/neovis.js/v1.5.0/neovis.js"></script>
+    <title>SMBUD - UI</title>
 </head>
 
-<body onload="draw()">
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col" id="viz"></div>
+            <div class="col" id="commands">
+                <div class="container">
+                    <div class="row" onclick="openCommands()">
+                        <div class="col">
+                            <h3 style="cursor: pointer;">> Commands</h3>
+                        </div>
+                    </div>
+                    <div class="row" id="commands-container">
+                        <div class="col">
+                            <div class="command">
+                                <h5>Create</h5>
+                                Create a new
+                                <select id="command_type" onchange="showTypeChange()">
+                                    <option value="node">Node</option>
+                                    <option value="relationship">Relationship</option>
+                                    <option value='default' selected>Select a type</option>
+                                </select><br><br>
 
-    <div id="viz"></div>
-    <div id="commands">
-        Commands:<br>
-        <div class="command">
-            - Add<br>
-            Add a new
-            <select id="command_type" onchange="showTypeChange()">
-                <option value="node">Node</option>
-                <option value="relationship">Relationship</option>
-                <option value='default' selected>Select a type</option>
-            </select><br><br>
+                                <span id="node">
+                                    Add a new <select id="node_type" onchange="showNodeChange()">
+                                        <option value="person">Person</option>
+                                        <option value="place">Place</option>
+                                        <option value="test">Test</option>
+                                        <option value="vaccine">Vaccine</option>
+                                        <option value='default' selected>Select a node </option>
+                                    </select>
+                                    node:<br>
+                                </span>
 
-            <span id="node">
-                Create a new <select id="node_type" onchange="showNodeChange()">
-                    <option value="person">Person</option>
-                    <option value="place">Place</option>
-                    <option value="test">Test</option>
-                    <option value="vaccine">Vaccine</option>
-                    <option value='default' selected>Select a node </option>
-                </select>
-                node:<br>
-            </span>
-
-            <span id="rel">
-                Add a new <select id="rel_type" onchange="showRelChange()">
-                    <option value="lives">LIVES_WITH</option>
-                    <option value="contact">CONTACT_WITH</option>
-                    <option value="visited">VISITED</option>
-                    <option value="tested">TESTED_WITH</option>
-                    <option value="vaccinated">VACCINATED_WITH</option>
-                    <option value='default' selected>Select a relationship </option>
-                </select>
-                relationship:<br>
-            </span>
+                                <span id="rel">
+                                    Add a new <select id="rel_type" onchange="showRelChange()">
+                                        <option value="lives">LIVES_WITH</option>
+                                        <option value="contact">CONTACT_WITH</option>
+                                        <option value="visited">VISITED</option>
+                                        <option value="tested">TESTED_WITH</option>
+                                        <option value="vaccinated">VACCINATED_WITH</option>
+                                        <option value='default' selected>Select a relationship </option>
+                                    </select>
+                                    relationship:<br>
+                                </span>
 
 
-            <span id="person_display">
-                firstName: <textarea rows="1" cols=10 id="first_name"></textarea> lastName: <textarea rows="1" cols=10
-                    id="last_name"></textarea><br>
-                cf: <textarea rows="1" cols=15 id="cf"></textarea> email: <textarea rows="1" cols=10
-                    id="email"></textarea>
-                <input type="submit" value="Submit" id="submit_person">
-            </span>
+                                <span id="person_display">
+                                    firstName: <textarea rows="1" cols=10 id="first_name"></textarea> lastName:
+                                    <textarea rows="1" cols=10 id="last_name"></textarea><br>
+                                    cf: <textarea rows="1" cols=15 id="cf"></textarea> email: <textarea rows="1" cols=10
+                                        id="email"></textarea>
+                                    <input type="submit" value="Submit" id="submit_person">
+                                </span>
 
-            <span id="place_display">
-                placeType: <select id="place_type">
-                    <option value="restaurant">Restaurant</option>
-                    <option value="hospital">Hospital</option>
-                    <option value="bar">Bar</option>
-                    <option value="gym">Gym</option>
-                    <option value="school">School</option>
-                    <option value="theater">Theater</option>
-                    <option value="cinema">Cinema</option>
-                    <option value="office">Office</option>
-                    <option value="supermarket">Supermarket</option>
-                    <option value="shop">Shop</option>
-                    <option value='default' selected>Select a place</option>
-                </select>
-                <br>placeName: <textarea rows="1" cols=15 id="place_name"></textarea> placeId: <textarea rows="1" cols=5
-                    id="place_id"></textarea>
-                <input type="submit" value="Submit" id="submit_place">
-            </span>
+                                <span id="place_display">
+                                    placeType: <select id="place_type">
+                                        <option value="restaurant">Restaurant</option>
+                                        <option value="hospital">Hospital</option>
+                                        <option value="bar">Bar</option>
+                                        <option value="gym">Gym</option>
+                                        <option value="school">School</option>
+                                        <option value="theater">Theater</option>
+                                        <option value="cinema">Cinema</option>
+                                        <option value="office">Office</option>
+                                        <option value="supermarket">Supermarket</option>
+                                        <option value="shop">Shop</option>
+                                        <option value='default' selected>Select a place</option>
+                                    </select>
+                                    <br>placeName: <textarea rows="1" cols=15 id="place_name"></textarea> placeId:
+                                    <textarea rows="1" cols=5 id="place_id"></textarea>
+                                    <input type="submit" value="Submit" id="submit_place">
+                                </span>
 
-            <span id="test_display">
-                date: <input type="date" id="test_date">
-                outcome: <select id="outcome_type">
-                    <option value="positive">Positive</option>
-                    <option value="negative">Negative</option>
-                    <option value='default' selected>Choose an option</option>
-                </select>
-                <input type="submit" value="Submit" id="submit_test">
-            </span>
+                                <span id="test_display">
+                                    date: <input type="date" id="test_date">
+                                    outcome: <select id="outcome_type">
+                                        <option value="positive">Positive</option>
+                                        <option value="negative">Negative</option>
+                                        <option value='default' selected>Choose an option</option>
+                                    </select>
+                                    <input type="submit" value="Submit" id="submit_test">
+                                </span>
 
-            <span id="vaccine_display">
-                date: <input type="date" id="vaccine_date">
-                name: <select id="vaccine_name">
-                    <option value="astrazeneca">Astrazeneca</option>
-                    <option value="pfizer">Pfizer</option>
-                    <option value="johnson&johnson">Johnson&Johnson</option>
-                    <option value="moderna">Moderna</option>
-                    <option value='default' selected>Choose an option</option>
-                </select>
-                <input type="submit" value="Submit" id="submit_vaccine">
-            </span>
+                                <span id="vaccine_display">
+                                    date: <input type="date" id="vaccine_date">
+                                    name: <select id="vaccine_name">
+                                        <option value="astrazeneca">Astrazeneca</option>
+                                        <option value="pfizer">Pfizer</option>
+                                        <option value="johnson&johnson">Johnson&Johnson</option>
+                                        <option value="moderna">Moderna</option>
+                                        <option value='default' selected>Choose an option</option>
+                                    </select>
+                                    <input type="submit" value="Submit" id="submit_vaccine">
+                                </span>
 
-            <span id="lives_display">
-                Person 1: <br>
-                firstName: <textarea rows="1" cols=10 id="first_name1"></textarea> lastName: <textarea rows="1" cols=10
-                    id="last_name1"></textarea><br>
-                cf: <textarea rows="1" cols=15 id="cf1"></textarea> email: <textarea rows="1" cols=10
-                    id="email1"></textarea><br><br>
+                                <span id="lives_display">
+                                    Person 1: <br>
+                                    firstName: <textarea rows="1" cols=10 id="first_name1"></textarea> lastName:
+                                    <textarea rows="1" cols=10 id="last_name1"></textarea><br>
+                                    cf: <textarea rows="1" cols=15 id="cf1"></textarea> email: <textarea rows="1"
+                                        cols=10 id="email1"></textarea><br><br>
 
-                Person 2: <br>
-                firstName: <textarea rows="1" cols=10 id="first_name2"></textarea> lastName: <textarea rows="1" cols=10
-                    id="last_name2"></textarea><br>
-                cf: <textarea rows="1" cols=15 id="cf2"></textarea> email: <textarea rows="1" cols=10
-                    id="email2"></textarea><br>
-                <input type="submit" value="Submit" id="submit_lives">
-            </span>
+                                    Person 2: <br>
+                                    firstName: <textarea rows="1" cols=10 id="first_name2"></textarea> lastName:
+                                    <textarea rows="1" cols=10 id="last_name2"></textarea><br>
+                                    cf: <textarea rows="1" cols=15 id="cf2"></textarea> email: <textarea rows="1"
+                                        cols=10 id="email2"></textarea><br>
+                                    <input type="submit" value="Submit" id="submit_lives">
+                                </span>
 
-            <span id="contact_display">
-                Person 1: <br>
-                firstName: <textarea rows="1" cols=10 id="fn_1"></textarea> lastName: <textarea rows="1" cols=10
-                    id="ln_1"></textarea><br>
-                cf: <textarea rows="1" cols=15 id="cf_1"></textarea> email: <textarea rows="1" cols=10
-                    id="email_1"></textarea><br><br>
+                                <span id="contact_display">
+                                    Person 1: <br>
+                                    firstName: <textarea rows="1" cols=10 id="fn_1"></textarea> lastName: <textarea
+                                        rows="1" cols=10 id="ln_1"></textarea><br>
+                                    cf: <textarea rows="1" cols=15 id="cf_1"></textarea> email: <textarea rows="1"
+                                        cols=10 id="email_1"></textarea><br><br>
 
-                Person 2: <br>
-                firstName: <textarea rows="1" cols=10 id="fn_2"></textarea> lastName: <textarea rows="1" cols=10
-                    id="ln_2"></textarea><br>
-                cf: <textarea rows="1" cols=15 id="cf_2"></textarea> email: <textarea rows="1" cols=10
-                    id="email_2"></textarea><br><br>
+                                    Person 2: <br>
+                                    firstName: <textarea rows="1" cols=10 id="fn_2"></textarea> lastName: <textarea
+                                        rows="1" cols=10 id="ln_2"></textarea><br>
+                                    cf: <textarea rows="1" cols=15 id="cf_2"></textarea> email: <textarea rows="1"
+                                        cols=10 id="email_2"></textarea><br><br>
 
-                date: <input type="datetime-local" id="contact_date"> coord: <textarea rows="1" cols=15
-                    id="contact_coord"></textarea><br>
-                <input type="submit" value="Submit" id="submit_contact">
+                                    date: <input type="datetime-local" id="contact_date"> coord: <textarea rows="1"
+                                        cols=15 id="contact_coord"></textarea><br>
+                                    <input type="submit" value="Submit" id="submit_contact">
 
-            </span>
+                                </span>
 
-            <span id="visited_display">
-                Person:<br>
-                firstName: <textarea rows="1" cols=10 id="fn"></textarea> lastName: <textarea rows="1" cols=10
-                    id="ln"></textarea><br>
-                cf: <textarea rows="1" cols=15 id="cfp"></textarea> email: <textarea rows="1" cols=10
-                    id="emailp"></textarea><br><br>
+                                <span id="visited_display">
+                                    Person:<br>
+                                    firstName: <textarea rows="1" cols=10 id="fn"></textarea> lastName: <textarea
+                                        rows="1" cols=10 id="ln"></textarea><br>
+                                    cf: <textarea rows="1" cols=15 id="cfp"></textarea> email: <textarea rows="1"
+                                        cols=10 id="emailp"></textarea><br><br>
 
-                Place:<br>
-                placeType: <select id="place_typep">
-                    <option value="restaurant">Restaurant</option>
-                    <option value="hospital">Hospital</option>
-                    <option value="bar">Bar</option>
-                    <option value="gym">Gym</option>
-                    <option value="school">School</option>
-                    <option value="theater">Theater</option>
-                    <option value="cinema">Cinema</option>
-                    <option value="office">Office</option>
-                    <option value="supermarket">Supermarket</option>
-                    <option value="shop">Shop</option>
-                    <option value='default' selected>Select a place</option>
-                </select>
-                placeName: <textarea rows="1" cols=15 id="place_namep"></textarea><br><br>
+                                    Place:<br>
+                                    placeType: <select id="place_typep">
+                                        <option value="restaurant">Restaurant</option>
+                                        <option value="hospital">Hospital</option>
+                                        <option value="bar">Bar</option>
+                                        <option value="gym">Gym</option>
+                                        <option value="school">School</option>
+                                        <option value="theater">Theater</option>
+                                        <option value="cinema">Cinema</option>
+                                        <option value="office">Office</option>
+                                        <option value="supermarket">Supermarket</option>
+                                        <option value="shop">Shop</option>
+                                        <option value='default' selected>Select a place</option>
+                                    </select>
+                                    placeName: <textarea rows="1" cols=15 id="place_namep"></textarea><br><br>
 
-                date: <input type="datetime-local" id="visit_date"><br>
-                <input type="submit" value="Submit" id="submit_visited">
-            </span>
+                                    date: <input type="datetime-local" id="visit_date"><br>
+                                    <input type="submit" value="Submit" id="submit_visited">
+                                </span>
 
-            <span id="tested_display">
-                Person:<br>
-                firstName: <textarea rows="1" cols=10 id="fnq"></textarea> lastName: <textarea rows="1" cols=10
-                    id="lnq"></textarea><br>
-                cf: <textarea rows="1" cols=15 id="cfq"></textarea> email: <textarea rows="1" cols=10
-                    id="emailq"></textarea><br><br>
+                                <span id="tested_display">
+                                    Person:<br>
+                                    firstName: <textarea rows="1" cols=10 id="fnq"></textarea> lastName: <textarea
+                                        rows="1" cols=10 id="lnq"></textarea><br>
+                                    cf: <textarea rows="1" cols=15 id="cfq"></textarea> email: <textarea rows="1"
+                                        cols=10 id="emailq"></textarea><br><br>
 
-                Test:<br>
-                date: <input type="date" id="test_dateq">
-                outcome: <select id="outcome_typeq">
-                    <option value="positive">Positive</option>
-                    <option value="negative">Negative</option>
-                    <option value='default' selected>Choose an option</option>
-                </select><br>
-                <input type="submit" value="Submit" id="submit_tested">
-            </span>
+                                    Test:<br>
+                                    date: <input type="date" id="test_dateq">
+                                    outcome: <select id="outcome_typeq">
+                                        <option value="positive">Positive</option>
+                                        <option value="negative">Negative</option>
+                                        <option value='default' selected>Choose an option</option>
+                                    </select><br>
+                                    <input type="submit" value="Submit" id="submit_tested">
+                                </span>
 
-            <span id="vaccinated_display">
-                Person:<br>
-                firstName: <textarea rows="1" cols=10 id="fnr"></textarea> lastName: <textarea rows="1" cols=10
-                    id="lnr"></textarea><br>
-                cf: <textarea rows="1" cols=15 id="cfr"></textarea> email: <textarea rows="1" cols=10
-                    id="emailr"></textarea><br><br>
+                                <span id="vaccinated_display">
+                                    Person:<br>
+                                    firstName: <textarea rows="1" cols=10 id="fnr"></textarea> lastName: <textarea
+                                        rows="1" cols=10 id="lnr"></textarea><br>
+                                    cf: <textarea rows="1" cols=15 id="cfr"></textarea> email: <textarea rows="1"
+                                        cols=10 id="emailr"></textarea><br><br>
 
-                Vaccine:<br>
-                date: <input type="date" id="vaccine_dater">
-                name: <select id="vaccine_typer">
-                    <option value="astrazeneca">Astrazeneca</option>
-                    <option value="pfizer">Pfizer</option>
-                    <option value="johnson&johnson">Johnson&Johnson</option>
-                    <option value="moderna">Moderna</option>
-                    <option value='default' selected>Choose an option</option>
-                </select><br>
-                <input type="submit" value="Submit" id="submit_vaccinated">
-            </span>
+                                    Vaccine:<br>
+                                    date: <input type="date" id="vaccine_dater">
+                                    name: <select id="vaccine_typer">
+                                        <option value="astrazeneca">Astrazeneca</option>
+                                        <option value="pfizer">Pfizer</option>
+                                        <option value="johnson&johnson">Johnson&Johnson</option>
+                                        <option value="moderna">Moderna</option>
+                                        <option value='default' selected>Choose an option</option>
+                                    </select><br>
+                                    <input type="submit" value="Submit" id="submit_vaccinated">
+                                </span>
+                            </div>
+
+                            <div class="command">
+                                <h5>Update</h5>
+
+                                Update a
+                                <select id="find_node" onchange="findNode()">
+                                    <option value="person">Person</option>
+                                    <option value="place">Place</option>
+                                    <option value="test">Test</option>
+                                    <option value="vaccine">Vaccine</option>
+                                    <option value='default' selected>Select a node</option>
+                                </select> node:<br><br>
+
+                                <span id="find_person">
+                                    cf: <textarea rows="1" cols=15 id="update_cf"></textarea><br>
+                                    firstName: <textarea rows="1" cols=10 id="update_first_name"></textarea> lastName:
+                                    <textarea rows="1" cols=10 id="update_last_name"></textarea>
+                                    email: <textarea rows="1" cols=10 id="update_email"></textarea>
+                                    <input type="submit" value="Update" id="findPerson">
+                                </span>
+
+                                <span id="find_place">
+                                    id: <textarea rows="1" cols=15 id="update_place_id"></textarea><br>
+                                    placeName: <textarea rows="1" cols=15 id="update_place_name"></textarea><br>
+                                    placeType: <select id="update_place_type">
+                                        <option value="hospital">Hospital</option>
+                                        <option value="bar">Bar</option>
+                                        <option value="gym">Gym</option>
+                                        <option value="school">School</option>
+                                        <option value="theater">Theater</option>
+                                        <option value="cinema">Cinema</option>
+                                        <option value="office">Office</option>
+                                        <option value="supermarket">Supermarket</option>
+                                        <option value="shop">Shop</option>
+                                        <option value='' selected>Select a place</option>
+                                    </select>
+                                    <input type="submit" value="Update" id="findPlace">
+                                </span>
+
+                                <span id="find_test">
+                                    id: <textarea rows="1" cols=15 id="update_test_id"></textarea><br>
+                                    date: <input type="date" id="update_test_date">
+                                    outcome: <select id="update_outcome_type">
+                                        <option value="positive">Positive</option>
+                                        <option value="negative">Negative</option>
+                                        <option value='' selected>Choose an option</option>
+                                    </select>
+                                    <input type="submit" value="Update" id="findTest">
+                                </span>
+
+                                <span id="find_vaccine">
+                                    id: <textarea rows="1" cols=15 id="update_vaccine_id"></textarea><br>
+                                    date: <input type="date" id="update_vaccine_date">
+                                    name: <select id="update_vaccine_name">
+                                        <option value="astrazeneca">Astrazeneca</option>
+                                        <option value="pfizer">Pfizer</option>
+                                        <option value="johnson&johnson">Johnson&Johnson</option>
+                                        <option value="moderna">Moderna</option>
+                                        <option value='' selected>Choose an option</option>
+                                    </select>
+                                    <input type="submit" value="Update" id="findVaccine">
+                                </span>
+                            </div>
+
+                            <div class="command">
+                                <h5>Delete</h5>
+
+                                Delete a
+                                <select id="delete_node" onchange="deleteNode()">
+                                    <option value="person">Person</option>
+                                    <option value="place">Place</option>
+                                    <option value="test">Test</option>
+                                    <option value="vaccine">Vaccine</option>
+                                    <option value='default' selected>Select a node </option>
+                                </select> node:<br><br>
+
+                                <span id="delete_person">
+                                    cf: <textarea rows="1" cols=15 id="delete_cf"></textarea><br>
+                                    firstName: <textarea rows="1" cols=10 id="delete_first_name"></textarea> lastName:
+                                    <textarea rows="1" cols=10 id="delete_last_name"></textarea>
+                                    email: <textarea rows="1" cols=10 id="delete_email"></textarea>
+                                    <input type="submit" value="Delete" id="deletePerson">
+                                </span>
+
+                                <span id="delete_place">
+                                    id: <textarea rows="1" cols=15 id="delete_place_id"></textarea><br>
+                                    placeName: <textarea rows="1" cols=15 id="delete_place_name"></textarea><br>
+                                    placeType: <select id="delete_place_type">
+                                        <option value="hospital">Hospital</option>
+                                        <option value="bar">Bar</option>
+                                        <option value="gym">Gym</option>
+                                        <option value="school">School</option>
+                                        <option value="theater">Theater</option>
+                                        <option value="cinema">Cinema</option>
+                                        <option value="office">Office</option>
+                                        <option value="supermarket">Supermarket</option>
+                                        <option value="shop">Shop</option>
+                                        <option value='' selected>Select a place</option>
+                                    </select>
+                                    <input type="submit" value="Delete" id="deletePlace">
+                                </span>
+
+                                <span id="delete_test">
+                                    id: <textarea rows="1" cols=15 id="delete_test_id"></textarea><br>
+                                    date: <input type="date" id="delete_test_date">
+                                    outcome: <select id="delete_outcome_type">
+                                        <option value="positive">Positive</option>
+                                        <option value="negative">Negative</option>
+                                        <option value='' selected>Choose an option</option>
+                                    </select>
+                                    <input type="submit" value="Delete" id="deleteTest">
+                                </span>
+
+                                <span id="delete_vaccine">
+                                    id: <textarea rows="1" cols=15 id="delete_vaccine_id"></textarea><br>
+                                    date: <input type="date" id="delete_vaccine_date">
+                                    name: <select id="delete_vaccine_name">
+                                        <option value="astrazeneca">Astrazeneca</option>
+                                        <option value="pfizer">Pfizer</option>
+                                        <option value="johnson&johnson">Johnson&Johnson</option>
+                                        <option value="moderna">Moderna</option>
+                                        <option value='' selected>Choose an option</option>
+                                    </select>
+                                    <input type="submit" value="Delete" id="deleteVaccine">
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" onclick="openCypher()">
+                        <div class="col">
+                            <h3 style="cursor: pointer;">> Cypher</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col" id="cypher-container">
+                            <div id="text"><br>
+                                <textarea rows="7" id="cypher"></textarea><br>
+                                <input type="submit" class="btn btn-outline-light btn-sm" value="Submit" id="reload">
+                                <input type="submit" class="btn btn-outline-light btn-sm" value="Reset" id="reset">
+                            </div>
+                            <br><br>
+                        </div>
+                    </div>
+                    <div class="row" onclick="openQueries()">
+                        <div class="col">
+                            <h3 style="cursor: pointer;">> Queries</h3><br>
+                        </div>
+                    </div>
+                    <div class="row" id="queries-container">
+                        <div class="col">
+                            <div id="queries">
+                                <div id="query">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">1. Given a positive person, find all the places
+                                            he has visited in the previous 14 days.</label><br>
+                                        <input type="submit" class="btn btn-outline-light btn-sm" value="Go" id="q1">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">2. Find out how many families have had an
+                                            infected member who, however,
+                                            has not infected anyone else within the family.</label><br>
+                                        <input type="submit" class="btn btn-outline-light btn-sm" value="Go" id="q2">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">3. Find vaccinated people who have been in
+                                            contact with someone positive and
+                                            haven't been infected.</label><br>
+                                        <input type="submit" class="btn btn-outline-light btn-sm" value="Go" id="q3">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">4. Find the people who were at the bar on
+                                            September 22 and found themselves
+                                            positive over the next 14 days.</label><br>
+                                        <input type="submit" class="btn btn-outline-light btn-sm" value="Go" id="q4">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">5. Find all the positive people of whom we are
+                                            sure of the identity of his
+                                            infector (i.e. he has been in contact with only one positive).</label><br>
+                                        <input type="submit" class="btn btn-outline-light btn-sm" value="Go" id="q5">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
         </div>
-
-
-
-        <div class="command">
-            <br><br>- Update<br>
-
-            Update a
-            <select id="find_node" onchange="findNode()">
-                <option value="person">Person</option>
-                <option value="place">Place</option>
-                <option value="test">Test</option>
-                <option value="vaccine">Vaccine</option>
-                <option value='default' selected>Select a node</option>
-            </select>
-            node:<br>
-
-            <span id="find_person">
-                cf: <textarea rows="1" cols=15 id="update_cf"></textarea><br>
-                firstName: <textarea rows="1" cols=10 id="update_first_name"></textarea> lastName: <textarea rows="1"
-                    cols=10 id="update_last_name"></textarea>
-                email: <textarea rows="1" cols=10 id="update_email"></textarea>
-                <input type="submit" value="Update" id="findPerson">
-            </span>
-
-            <span id="find_place">
-                id: <textarea rows="1" cols=15 id="update_place_id"></textarea><br>
-                placeName: <textarea rows="1" cols=15 id="update_place_name"></textarea><br>
-                placeType: <select id="update_place_type">
-                    <option value="hospital">Hospital</option>
-                    <option value="bar">Bar</option>
-                    <option value="gym">Gym</option>
-                    <option value="school">School</option>
-                    <option value="theater">Theater</option>
-                    <option value="cinema">Cinema</option>
-                    <option value="office">Office</option>
-                    <option value="supermarket">Supermarket</option>
-                    <option value="shop">Shop</option>
-                    <option value='' selected>Select a place</option>
-                </select>
-                <input type="submit" value="Update" id="findPlace">
-            </span>
-
-            <span id="find_test">
-                id: <textarea rows="1" cols=15 id="update_test_id"></textarea><br>
-                date: <input type="date" id="update_test_date">
-                outcome: <select id="update_outcome_type">
-                    <option value="positive">Positive</option>
-                    <option value="negative">Negative</option>
-                    <option value='' selected>Choose an option</option>
-                </select>
-                <input type="submit" value="Update" id="findTest">
-            </span>
-
-            <span id="find_vaccine">
-                id: <textarea rows="1" cols=15 id="update_vaccine_id"></textarea><br>
-                date: <input type="date" id="update_vaccine_date">
-                name: <select id="update_vaccine_name">
-                    <option value="astrazeneca">Astrazeneca</option>
-                    <option value="pfizer">Pfizer</option>
-                    <option value="johnson&johnson">Johnson&Johnson</option>
-                    <option value="moderna">Moderna</option>
-                    <option value='' selected>Choose an option</option>
-                </select>
-                <input type="submit" value="Update" id="findVaccine">
-            </span>
-        </div>
-
-        <div class="command">
-            <br><br>- Delete<br>
-
-            Delete a
-            <select id="delete_node" onchange="deleteNode()">
-                <option value="person">Person</option>
-                <option value="place">Place</option>
-                <option value="test">Test</option>
-                <option value="vaccine">Vaccine</option>
-                <option value='default' selected>Select a node </option>
-            </select>
-            node:<br>
-
-            <span id="delete_person">
-                cf: <textarea rows="1" cols=15 id="delete_cf"></textarea><br>
-                firstName: <textarea rows="1" cols=10 id="delete_first_name"></textarea> lastName: <textarea rows="1"
-                    cols=10 id="delete_last_name"></textarea>
-                email: <textarea rows="1" cols=10 id="delete_email"></textarea>
-                <input type="submit" value="Delete" id="deletePerson">
-            </span>
-
-            <span id="delete_place">
-                id: <textarea rows="1" cols=15 id="delete_place_id"></textarea><br>
-                placeName: <textarea rows="1" cols=15 id="delete_place_name"></textarea><br>
-                placeType: <select id="delete_place_type">
-                    <option value="hospital">Hospital</option>
-                    <option value="bar">Bar</option>
-                    <option value="gym">Gym</option>
-                    <option value="school">School</option>
-                    <option value="theater">Theater</option>
-                    <option value="cinema">Cinema</option>
-                    <option value="office">Office</option>
-                    <option value="supermarket">Supermarket</option>
-                    <option value="shop">Shop</option>
-                    <option value='' selected>Select a place</option>
-                </select>                
-                <input type="submit" value="Delete" id="deletePlace">
-            </span>
-
-            <span id="delete_test">
-                id: <textarea rows="1" cols=15 id="delete_test_id"></textarea><br>
-                date: <input type="date" id="delete_test_date">
-                outcome: <select id="delete_outcome_type">
-                    <option value="positive">Positive</option>
-                    <option value="negative">Negative</option>
-                    <option value='' selected>Choose an option</option>
-                </select>
-                <input type="submit" value="Delete" id="deleteTest">
-            </span>
-
-            <span id="delete_vaccine">
-                id: <textarea rows="1" cols=15 id="delete_vaccine_id"></textarea><br>
-                date: <input type="date" id="delete_vaccine_date">
-                name: <select id="delete_vaccine_name">
-                    <option value="astrazeneca">Astrazeneca</option>
-                    <option value="pfizer">Pfizer</option>
-                    <option value="johnson&johnson">Johnson&Johnson</option>
-                    <option value="moderna">Moderna</option>
-                    <option value='' selected>Choose an option</option>
-                </select>
-                <input type="submit" value="Delete" id="deleteVaccine">
-            </span>
-        </div>
-
-
     </div>
 
-    <div id="text">
-        Cypher query: <textarea rows="2" cols=50 id="cypher"></textarea><br>
-        <input type="submit" value="Submit" id="reload">
-        <input type="submit" value="Reset" id="reset">
-    </div>
-
-    <div id="queries">
-        Queries:<br><br>
-        <div id="query">
-            1. Given a positive person, find all the places he has visited in the previous 14 days.<br>
-            <input type="submit" value="Go" id="q1"><br><br>
-            2. Find out how many families have had an infected member who, however, <br>
-            has not infected anyone else within the family. <br>
-            <input type="submit" value="Go" id="q2"><br><br>
-            3. Find vaccinated people who have been in contact with someone positive and<br>
-            haven't been infected.<br>
-            <input type="submit" value="Go" id="q3"><br><br>
-            4. Find the people who were at the bar on August 15 and found themselves <br>
-            positive over the next 14 days.<br>
-            <input type="submit" value="Go" id="q4"><br><br>
-            5. Find all the positive people of whom we are sure of the identity of his<br>
-            infector (i.e. he has been in contact with only one positive).<br>
-
-            <input type="submit" value="Go" id="q5"><br><br>
-        </div>
-    </div>
-
-
-
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 </body>
-
-<script type="text/javascript" src="js/update.js"></script>
-<script type="text/javascript" src="js/queries.js"></script>
 
 </html>

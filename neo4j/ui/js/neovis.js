@@ -1,19 +1,15 @@
-// define config car
-// instantiate nodevis object
-// draw
-
 var viz;
 var nodeTypes = [];
 var relTypes = [];
 var findNodes = [];
 var deleteNodes = [];
 
-function draw() {
+window.addEventListener("load", async () => {
   var config = {
     //encrypted: "ENCRYPTION_ON",
     //trust: "TRUST_SYSTEM_CA_SIGNED_CERTIFICATES",
     container_id: "viz",
-    server_url: "bolt://localhost:7687",
+    server_url: "neo4j://localhost:7687",
     server_user: "neo4j",
     server_password: "neo4j",
     labels: {
@@ -51,15 +47,12 @@ function draw() {
   for (var i = 0; i < nodeTypes.length; i++) {
     nodeTypes[i].style.display = "none";
   }
-
   for (var i = 0; i < relTypes.length; i++) {
     relTypes[i].style.display = "none";
   }
-
   for (var i = 0; i < findNodes.length; i++) {
     findNodes[i].style.display = "none";
   }
-
   for (var i = 0; i < deleteNodes.length; i++) {
     deleteNodes[i].style.display = "none";
   }
@@ -67,7 +60,7 @@ function draw() {
   viz = new NeoVis.default(config);
   viz.render();
   console.log(viz);
-}
+});
 
 function showTypeChange() {
   switch (document.getElementById("command_type").value) {
@@ -230,5 +223,29 @@ function deleteNode() {
       }
       delete_vaccine.style.display = "block";
       break;
+  }
+}
+
+function openCommands() {
+  if (document.getElementById("commands-container").style.display == "block") {
+    document.getElementById("commands-container").style.display = "none";
+  } else {
+    document.getElementById("commands-container").style.display = "block";
+  }
+}
+
+function openCypher() {
+  if (document.getElementById("cypher-container").style.display == "block") {
+    document.getElementById("cypher-container").style.display = "none";
+  } else {
+    document.getElementById("cypher-container").style.display = "block";
+  }
+}
+
+function openQueries() {
+  if (document.getElementById("queries-container").style.display == "block") {
+    document.getElementById("queries-container").style.display = "none";
+  } else {
+    document.getElementById("queries-container").style.display = "block";
   }
 }
