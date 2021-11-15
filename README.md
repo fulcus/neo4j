@@ -45,6 +45,7 @@ We implemented 5 useful queries available in the sidebar. Below the visualizatio
 * [neo4j](https://neo4j.com/)
 * [neovis.js](https://github.com/neo4j-contrib/neovis.js)
 * [jQuery](https://jquery.com)
+* [Bootstrap 4](https://getbootstrap.com/)
 * [mockaroo](https://www.mockaroo.com/)
 
 ## Authors
