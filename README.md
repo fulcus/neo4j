@@ -1,8 +1,9 @@
 # neo4j-covid19-db
 
-## Neo4j
+## Purpose
 The first project's goal is to trace contacts between people, to monitor the viral diffusion.
 It entails the design and implementation of a query graph data structure in a NoSQL database to support a contact tracing application for COVID-19. 
+The data is fake and generated with [mockaroo](https://www.mockaroo.com/) and python scripts.
 
 ### Installation
 
@@ -11,7 +12,7 @@ To run the project follow these simple example steps.
 1. Install [neo4j](https://neo4j.com/download-center/#community) ([JDK 11](https://jdk.java.net/archive/) needed to run it)
 1. Import [dump](https://github.com/fulcus/neo4j-mongo-hadoop/blob/master/neo4j/neo4j-SMBUD.dump), from neo4j folder: `bin/neo4j-admin load --from=/path/to/directory/neo4j-SMBUD.dump`
 1. Run neo4j on port 7687
-1. Visit the [demo page](https://fulcus.github.io/neo4j-mongo-hadoop/neo4j/ui/index.html) or launch `neo4j/ui/index.html`
+1. Visit the [demo page](https://fulcus.github.io/neo4j-covid19-db/neo4j/ui/index.html) or launch `neo4j/ui/index.html`
 
 ### Features
 
