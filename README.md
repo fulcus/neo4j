@@ -1,4 +1,4 @@
-# neo4j-mongo-hadoop
+# neo4j-covid19-db
 
 ## Neo4j
 The first project's goal is to trace contacts between people, to monitor the viral diffusion.
