@@ -1,6 +1,6 @@
 # neo4j-covid19-db
 
-## Purpose
+### Purpose
 The first project's goal is to trace contacts between people, to monitor the viral diffusion.
 It entails the design and implementation of a query graph data structure in a NoSQL database to support a contact tracing application for COVID-19. 
 The data is fake and generated with [mockaroo](https://www.mockaroo.com/) and python scripts.
